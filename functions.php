@@ -6,6 +6,7 @@ function theme_files()
 {
   wp_enqueue_script('Main-Scripts', get_theme_file_uri('js/scripts.min.js'), NULL, microtime(), true);
   wp_enqueue_style('MyStyles', get_stylesheet_uri());
+  wp_enqueue_style('Hamburger', get_theme_file_uri('lib/hamburgers.min.css'));
   wp_enqueue_script('BootstrapJS', 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js', array('jquery'));
   wp_enqueue_style('Bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
   wp_enqueue_script('Jquerysc', 'https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js');
