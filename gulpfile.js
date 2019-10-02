@@ -39,6 +39,10 @@ gulp.task('load', function () {
   browserSync.reload();
 });
 
+gulp.task('styles-o', function () {
+  watch('./styles/**/*.scss', gulp.series('styles'));
+});
+
 gulp.task('styles', function (done) {
   return gulp.src('./styles/main.scss')
     .pipe(sass())

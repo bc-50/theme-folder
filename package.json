@@ -4,7 +4,7 @@
   "description": "Williams Pakage",
   "devDependencies": {
     "autoprefixer": "^9.5.1",
-    "browser-sync": "^2.26.3",
+    "browser-sync": "^2.26.7",
     "csswring": "^7.0.0",
     "gulp": "^4.0.0",
     "gulp-minify": "^3.1.0",
