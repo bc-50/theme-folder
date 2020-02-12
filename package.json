@@ -1,7 +1,7 @@
 {
-  "name": "brace-williams-theme",
+  "name": "brace-theme",
   "version": "1.0.0",
-  "description": "Williams Pakage",
+  "description": "Cool Dude Package",
   "devDependencies": {
     "autoprefixer": "^9.7.4",
     "browser-sync": "^2.26.7",
