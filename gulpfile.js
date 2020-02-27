@@ -4,19 +4,20 @@ var gulp = require("gulp"),
   browserSync = require("browser-sync").create(),
   postcss = require("gulp-postcss"),
   autopre = require("autoprefixer"),
-  csswring = require("csswring"),
+  csso = require("gulp-csso"),
   sass = require("gulp-sass"),
   minify = require("gulp-minifier");
+concat = require("gulp-concat");
 
-var url = "http://localhost/template/start.php";
+var url = "http://localhost/experiment-site";
 
 gulp.task("watch", function () {
   browserSync.init({
     proxy: url,
     ghostMode: false
   });
-  watch("./js/*.js", gulp.series("scripts"));
-  watch("./js/backend-js/*.js", gulp.series("admin-scripts"));
+  watch(["./js/*.js", "!./js/scripts-bundle.js"], gulp.series("scripts"));
+  watch("./js/backend-js/scripts.js", gulp.series("admin-scripts"));
   watch("./styles/**/*.scss", gulp.series("styles"));
   watch("./backend-styles/*.scss", gulp.series("admin-styles"));
 
@@ -47,7 +48,8 @@ gulp.task("admin-scripts", function () {
 
 gulp.task("scripts", function () {
   return gulp
-    .src("./js/scripts.js")
+    .src("./js/*.js")
+    .pipe(concat('scripts-bundle.js'))
     .pipe(
       minify({
         minify: true,
@@ -61,7 +63,7 @@ gulp.task("scripts", function () {
         suffix: ".min"
       })
     )
-    .pipe(gulp.dest("js"));
+    .pipe(gulp.dest("js/min"));
 });
 
 gulp.task("load", function () {
@@ -81,7 +83,7 @@ gulp.task("styles", function (done) {
     .pipe(sass())
     .pipe(postcss([autopre]))
     .pipe(gulp.dest("./styles"))
-    .pipe(postcss([csswring]))
+    .pipe(csso())
     .pipe(
       rename({
         basename: "main.min"
@@ -98,7 +100,7 @@ gulp.task("admin-styles", function (done) {
     .pipe(sass())
     .pipe(postcss([autopre]))
     .pipe(gulp.dest("./backend-styles"))
-    .pipe(postcss([csswring]))
+    .pipe(csso())
     .pipe(
       rename({
         basename: "admin-main.min"
