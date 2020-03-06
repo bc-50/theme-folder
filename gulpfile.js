@@ -101,9 +101,9 @@ gulp.task("admin-styles", function (done) {
     .src("./backend-styles/admin-main.scss")
     .pipe(sass())
     .pipe(postcss([autopre]))
+    .pipe(gcmq())
     .pipe(gulp.dest("./backend-styles"))
     .pipe(csso())
-    .pipe(gcmq())
     .pipe(
       rename({
         basename: "admin-main.min"
