@@ -7,7 +7,8 @@ var gulp = require("gulp"),
   csso = require("gulp-csso"),
   sass = require("gulp-sass"),
   minify = require("gulp-minifier");
-concat = require("gulp-concat");
+concat = require("gulp-concat"),
+  gcmq = require('gulp-group-css-media-queries');
 
 var url = "http://localhost/experiment-site";
 
@@ -82,6 +83,7 @@ gulp.task("styles", function (done) {
     .src("./styles/main.scss")
     .pipe(sass())
     .pipe(postcss([autopre]))
+    .pipe(gcmq())
     .pipe(gulp.dest("./styles"))
     .pipe(csso())
     .pipe(
@@ -101,6 +103,7 @@ gulp.task("admin-styles", function (done) {
     .pipe(postcss([autopre]))
     .pipe(gulp.dest("./backend-styles"))
     .pipe(csso())
+    .pipe(gcmq())
     .pipe(
       rename({
         basename: "admin-main.min"
