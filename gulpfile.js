@@ -10,14 +10,14 @@ var gulp = require("gulp"),
 concat = require("gulp-concat"),
   gcmq = require('gulp-group-css-media-queries');
 
-var url = "http://localhost/experiment-site";
+var url = "http://localhost/com-1";
 
 gulp.task("watch", function () {
   browserSync.init({
     proxy: url,
     ghostMode: false
   });
-  watch(["./js/*.js", "!./js/scripts-bundle.js"], gulp.series("scripts"));
+  watch(["./js/*.js", "!./js/scripts-bundle.js"], gulp.series("scripts", "load"));
   watch("./js/backend-js/scripts.js", gulp.series("admin-scripts"));
   watch("./styles/**/*.scss", gulp.series("styles"));
   watch("./backend-styles/*.scss", gulp.series("admin-styles"));
